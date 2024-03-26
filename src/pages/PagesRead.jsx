@@ -1,5 +1,5 @@
 
-const PagesReaded = () => {
+const PagesRead = () => {
     return (
         <div>
             <h2 className="text-3xl">Page for read</h2>            
@@ -8,4 +8,4 @@ const PagesReaded = () => {
     );
 };
 
-export default PagesReaded;
+export default PagesRead;
