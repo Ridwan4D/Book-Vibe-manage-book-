@@ -1,100 +1,108 @@
-// import { useEffect, useState } from "react";
-
+import { useState } from "react";
 import { useLoaderData, useParams } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { saveDataLocalStorage } from "../utilities/localStorage";
 
 const BookDetails = () => {
+  const [btnValue, setBtnValue] =  useState(true);
   const books = useLoaderData();
   const { id } = useParams();
   const book = books.find((book) => book.id == id);
-  const {image, bookName, tags, author, category, rating } = book;
+  const {
+    image,
+    bookName,
+    tags,
+    author,
+    category,
+    rating,
+    review,
+    totalPages,
+    yearOfPublishing,
+    publisher,
+  } = book;
+  const handleReadBtn = (e) => {
+    const savedData = JSON.parse(localStorage.getItem("books")) || [];
+    const isExist = savedData.find((item) => item.id == book.id);
+    if (!isExist && btnValue) {
+      const localData = [...savedData, book];
+      localStorage.setItem("books", JSON.stringify(localData));
+      toast("Reading complete");
+    } else if (isExist && btnValue) {
+      toast("Reading complete");
+    } else if (isExist && !btnValue) {
+      toast("Already completed");
+    }
+    setBtnValue(e)
+  };
+  const handleWishListBtn = () => {
+    saveDataLocalStorage(book)
+  };
   return (
     <div>
       <div className="dark:bg-gray-100 dark:text-gray-900">
         <div className="container grid grid-cols-12 mx-auto">
-          <div className="flex flex-col justify-center col-span-12 align-middle dark:bg-gray-300 bg-no-repeat bg-cover lg:col-span-6 lg:h-auto">
+          <div className="flex flex-col justify-center col-span-12 bg-[#1313130D] rounded-2xl align-middle bg-no-repeat bg-cover lg:col-span-6 lg:h-auto">
             <img src={image} alt="" />
           </div>
           <div className="flex flex-col col-span-12 p-6 divide-y lg:col-span-6 lg:p-10 dark:divide-gray-300">
             <div className="pt-6 pb-4 space-y-2">
-              <span>12 June</span>
-              <h1 className="text-3xl font-bold">Lorem ipsum dolor sit.</h1>
-              <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas,
-                a!
-              </p>
-              <a
-                rel="noopener noreferrer"
-                href="#"
-                className="inline-flex items-center py-2 space-x-2 text-sm dark:text-violet-600"
-              >
-                <span>Read more</span>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 20 20"
-                  fill="currentColor"
-                  className="w-4 h-4"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z"
-                    clipRule="evenodd"
-                  ></path>
-                </svg>
-              </a>
+              <h1 className="text-3xl font-bold">{bookName}</h1>
+              <p>By: {author}</p>
+              <hr />
+              <p>{category}</p>
             </div>
             <div className="pt-6 pb-4 space-y-2">
-              <span>12 June</span>
-              <h1 className="text-3xl font-bold">Lorem ipsum dolor sit.</h1>
-              <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas,
-                a!
+              <p className="text-[#131313B3]">
+                <span className="font-bold text-[#131313]">Review:</span>{" "}
+                {review}
               </p>
-              <a
-                rel="noopener noreferrer"
-                href="#"
-                className="inline-flex items-center py-2 space-x-2 text-sm dark:text-violet-600"
-              >
-                <span>Read more</span>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 20 20"
-                  fill="currentColor"
-                  className="w-4 h-4"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z"
-                    clipRule="evenodd"
-                  ></path>
-                </svg>
-              </a>
+              <div className="flex py-3 dark:border-gray-600 space-x-7">
+                <span className="font-bold text-[#131313]">Tag</span>{" "}
+                {tags.map((tag, idx) => (
+                  <a
+                    key={idx}
+                    rel="noopener noreferrer"
+                    className="px-2 bg-[#23BE0A0D] green-text rounded-full"
+                  >
+                    #{tag}
+                  </a>
+                ))}
+              </div>
             </div>
             <div className="pt-6 pb-4 space-y-2">
-              <span>12 June</span>
-              <h1 className="text-3xl font-bold">Lorem ipsum dolor sit.</h1>
-              <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas,
-                a!
-              </p>
-              <a
-                rel="noopener noreferrer"
-                href="#"
-                className="inline-flex items-center py-2 space-x-2 text-sm dark:text-violet-600"
-              >
-                <span>Read more</span>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 20 20"
-                  fill="currentColor"
-                  className="w-4 h-4"
+              <div className="flex gap-10">
+                <div className="text-[#131313B3]">
+                  <p>Number of Pages:</p>
+                  <p>Publisher:</p>
+                  <p>Year of Publishing:</p>
+                  <p>Rating:</p>
+                </div>
+                <div className="text-[#131313] font-semibold">
+                  <p>{totalPages}</p>
+                  <p>{publisher}</p>
+                  <p>{yearOfPublishing}</p>
+                  <p>{rating}</p>
+                </div>
+              </div>
+              <div className="space-x-5">
+                <button
+                  onClick={() => handleReadBtn(false)}
+                  id="read-btn"
+                  type="button"
+                  className="px-2 py-1 md:px-5 md:py-2 text-sm md:text-lg font-semibold rounded-lg text-black border-2 border-gray-300"
                 >
-                  <path
-                    fillRule="evenodd"
-                    d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z"
-                    clipRule="evenodd"
-                  ></path>
-                </svg>
-              </a>
+                  Read
+                </button>
+                <button
+                  onClick={handleWishListBtn}
+                  type="button"
+                  className="px-2 py-1 md:px-5 md:py-2 text-sm md:text-lg font-semibold rounded-lg bg-[#59C6D2] text-white"
+                >
+                  Wishlist
+                </button>
+                <ToastContainer />
+              </div>
             </div>
           </div>
         </div>
