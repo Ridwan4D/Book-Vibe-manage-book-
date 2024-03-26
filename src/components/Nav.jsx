@@ -64,7 +64,7 @@ const Nav = () => {
             type="button"
             className="px-2 py-1 md:px-5 md:py-2 text-sm md:text-lg font-semibold rounded bg-[#59C6D2] text-white"
           >
-            Sign In
+            Sign Up
           </button>
         </div>
       </div>
