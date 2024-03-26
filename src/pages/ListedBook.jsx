@@ -52,7 +52,7 @@ const ListedBook = () => {
             tabIndex === 1 ? "border border-b-0" : "border-b"
           } rounded-t-lg dark:border-gray-600 dark:text-gray-900`}
         >
-          <span>Wish List</span>
+          <span>WishList Books</span>
         </Link>
       </div>
       <Outlet></Outlet>

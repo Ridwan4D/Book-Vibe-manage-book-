@@ -9,7 +9,7 @@ const CompleteReading = () => {
   }, []);
 //   console.log(readData);
   return (
-    <div>
+    <div className="my-16">
       {
         readData.map((data,idx)=> <CompleteBookCard key={idx} data={data}></CompleteBookCard>)
       }

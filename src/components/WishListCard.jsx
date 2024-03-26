@@ -3,8 +3,8 @@ import { FaCalendarDays } from "react-icons/fa6";
 import { TiGroupOutline } from "react-icons/ti";
 import { MdOutlineInsertPageBreak } from "react-icons/md";
 import { Link } from "react-router-dom";
-const CompleteBookCard = ({ data }) => {
-  // console.log(data);
+
+const WishListCard = ({ data }) => {
   const {
     id,
     image,
@@ -66,7 +66,7 @@ const CompleteBookCard = ({ data }) => {
                 Rating: {rating}
               </p>
               <Link
-              to={`/book/${id}`}
+                to={`/book/${id}`}
                 type="button"
                 className="px-7 md:px-5 text-sm md:text-lg font-semibold rounded-full bg-[#23BE0A] text-white"
               >
@@ -79,7 +79,7 @@ const CompleteBookCard = ({ data }) => {
     </div>
   );
 };
-CompleteBookCard.propTypes = {
+WishListCard.propTypes = {
   data: PropTypes.object,
 };
-export default CompleteBookCard;
+export default WishListCard;

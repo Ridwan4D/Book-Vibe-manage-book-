@@ -43,7 +43,7 @@ const BookDetails = () => {
       <div className="dark:bg-gray-100 dark:text-gray-900">
         <div className="container grid grid-cols-12 mx-auto">
           <div className="flex flex-col justify-center col-span-12 bg-[#1313130D] rounded-2xl align-middle bg-no-repeat bg-cover lg:col-span-6 lg:h-auto">
-            <img src={image} alt="" />
+            <img src={image} alt="" className="h-[70vh]" />
           </div>
           <div className="flex flex-col col-span-12 p-6 divide-y lg:col-span-6 lg:p-10 dark:divide-gray-300">
             <div className="pt-6 pb-4 space-y-2">
