@@ -43,7 +43,7 @@ const BookDetails = () => {
       <div className="dark:bg-gray-100 dark:text-gray-900">
         <div className="container grid grid-cols-12 mx-auto">
           <div className="flex flex-col justify-center col-span-12 bg-[#1313130D] rounded-2xl align-middle bg-no-repeat bg-cover lg:col-span-6 lg:h-auto">
-            <img src={image} alt="" className="h-[70vh]" />
+            <img src={image} alt="" />
           </div>
           <div className="flex flex-col col-span-12 p-2 md:p-6 divide-y lg:col-span-6 lg:p-10 dark:divide-gray-300">
             <div className="pt-6 pb-4 space-y-2">
@@ -57,7 +57,7 @@ const BookDetails = () => {
                 <span className="font-bold text-[#131313]">Review:</span>{" "}
                 {review}
               </p>
-              <div className="flex flex-col md:flex-row py-3 dark:border-gray-600 space-x-7">
+              <div className="flex flex-col md:flex-row py-3 dark:border-gray-600 md:space-x-7">
                 <span className="font-bold text-[#131313]">Tag</span>{" "}
                 {tags.map((tag, idx) => (
                   <a

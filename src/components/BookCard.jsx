@@ -13,12 +13,12 @@ const BookCard = ({ book }) => {
       <div className="bg-gray-200 py-10 rounded-xl">
         <img src={image} alt="" className="mx-auto rounded-md h-72" />
       </div>
-      <div className="flex py-3 dark:border-gray-600 space-x-10">
+      <div className="flex flex-col md:flex-row py-3 dark:border-gray-600 md:space-x-10">
         {tags.map((tag,idx) => (
           <a
             key={idx}
             rel="noopener noreferrer"
-            className="px-2 bg-[#23BE0A0D] green-text rounded-full"
+            className="px-2 bg-[#23BE0A0D] green-text rounded-full my-1"
           >
             {tag}
           </a>
