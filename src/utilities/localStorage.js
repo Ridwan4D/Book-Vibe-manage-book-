@@ -1,14 +1,20 @@
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-export const saveDataLocalStorage = (book) => {
-    const savedData = JSON.parse(localStorage.getItem("books")) || [];
-    const isExist = savedData.find((item) => item.id == book.id);
-    if (isExist) {
-        toast("Already added");
+export const saveDataWishList = (book) => {
+    const savedData = JSON.parse(localStorage.getItem("wishBooks")) || [];
+    const isExistInReadBook = savedData.find((item) => item.id == book.id);
+    if (!isExistInReadBook) {
+        const savedData = JSON.parse(localStorage.getItem("readBooks")) || [];
+        const isExistInWishBook = savedData.find((item) => item.id == book.id);
+        if (isExistInWishBook) {
+            toast("Reading complete");
+        }else{
+            const localData = [...savedData, book];
+            localStorage.setItem("wishBooks", JSON.stringify(localData));
+            toast("Added to wish list");
+        }
     } else {
-        const localData = [...savedData, book];
-        localStorage.setItem("books", JSON.stringify(localData));
-        toast("Added to wish list");
+        toast("Already added");
     }
 }

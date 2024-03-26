@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useLoaderData, useParams } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { saveDataLocalStorage } from "../utilities/localStorage";
+import { saveDataWishList } from "../utilities/localStorage";
 
 const BookDetails = () => {
   const [btnValue, setBtnValue] =  useState(true);
@@ -22,21 +22,21 @@ const BookDetails = () => {
     publisher,
   } = book;
   const handleReadBtn = (e) => {
-    const savedData = JSON.parse(localStorage.getItem("books")) || [];
+    const savedData = JSON.parse(localStorage.getItem("readBooks")) || [];
     const isExist = savedData.find((item) => item.id == book.id);
     if (!isExist && btnValue) {
       const localData = [...savedData, book];
-      localStorage.setItem("books", JSON.stringify(localData));
+      localStorage.setItem("readBooks", JSON.stringify(localData));
       toast("Reading complete");
     } else if (isExist && btnValue) {
       toast("Reading complete");
     } else if (isExist && !btnValue) {
-      toast("Already completed");
+      toast("Already Read");
     }
     setBtnValue(e)
   };
   const handleWishListBtn = () => {
-    saveDataLocalStorage(book)
+    saveDataWishList(book)
   };
   return (
     <div>

@@ -9,40 +9,54 @@ import PagesRead from "./pages/PagesRead.jsx";
 import TopBooks from "./pages/TopBooks.jsx";
 import FamousWriter from "./pages/FamousWriter.jsx";
 import BookDetails from "./components/BookDetails.jsx";
+import CompleteReading from "./components/CompleteReading.jsx";
+import WishList from "./components/WishList.jsx";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <MainLayout></MainLayout>,
     errorElement: <Error></Error>,
-    children:[
+    children: [
       {
-        path:"/",
-        element:<Home></Home>,
-        loader: ()=> fetch("https://ridwan4d.github.io/test-json-host/booksData.json")
+        path: "/",
+        element: <Home></Home>,
+        loader: () =>
+          fetch("https://ridwan4d.github.io/test-json-host/booksData.json"),
       },
       {
-        path:"/listed",
-        element:<ListedBook></ListedBook>
+        path: "/listed",
+        element: <ListedBook></ListedBook>,
+        children: [
+          {
+            index: true,
+            element:<CompleteReading></CompleteReading>
+          },
+          {
+            path:'wishList',
+            element:<WishList></WishList>
+          },
+        ],
       },
       {
-        path:"/forRead",
-        element:<PagesRead></PagesRead>
+        path: "/forRead",
+        element: <PagesRead></PagesRead>,
       },
       {
-        path:"/topBooks",
-        element:<TopBooks></TopBooks>
+        path: "/topBooks",
+        element: <TopBooks></TopBooks>,
       },
       {
-        path:"/book/:id",
+        path: "/book/:id",
         element: <BookDetails></BookDetails>,
-        loader: ()=>fetch(`https://ridwan4d.github.io/test-json-host/booksData.json`)
+        loader: () =>
+          fetch(`https://ridwan4d.github.io/test-json-host/booksData.json`),
       },
       {
-        path:"/writers",
-        element:<FamousWriter></FamousWriter>
+        path: "/writers",
+        element: <FamousWriter></FamousWriter>,
       },
-    ]
+    ],
   },
 ]);
 
