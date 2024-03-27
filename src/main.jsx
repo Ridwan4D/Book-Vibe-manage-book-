@@ -59,6 +59,10 @@ const router = createBrowserRouter([
       {
         path: "/writers",
         element: <FamousWriter></FamousWriter>,
+        loader: () =>
+          fetch(
+            `https://ridwan4d.github.io/assignment-8-fake-data-3/fakeData.json`
+          ),
       },
     ],
   },
