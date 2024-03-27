@@ -1,5 +1,13 @@
 import { useEffect, useState } from "react";
-import { BarChart, Bar, Cell, XAxis, YAxis, CartesianGrid, Tooltip } from "recharts";
+import {
+  BarChart,
+  Bar,
+  Cell,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+} from "recharts";
 const colors = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042", "red", "pink"];
 
 const getPath = (x, y, width, height) => {
@@ -27,10 +35,10 @@ const PagesRead = () => {
   }, []);
   //   console.log(readData);
   return (
-    <div>
+    <div style={{ width: "100%", overflowX: "auto" }}>
       <BarChart
         className="mx-auto"
-        width={1000}
+        width={readData.length * 100}
         height={500}
         data={readData}
         margin={{

@@ -40,7 +40,7 @@ const BookDetails = () => {
   };
   return (
     <div>
-      <div className="dark:bg-gray-100 dark:text-gray-900">
+      <div className="my-16">
         <div className="container grid grid-cols-12 mx-auto">
           <div className="flex flex-col justify-center col-span-12 bg-[#1313130D] rounded-2xl align-middle bg-no-repeat bg-cover lg:col-span-6 lg:h-auto">
             <img src={image} alt="" />
