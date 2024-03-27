@@ -11,7 +11,7 @@ const CompleteReading = () => {
   return (
     <div className="my-16">
       {
-        readData.map((data,idx)=> <CompleteBookCard key={idx} data={data}></CompleteBookCard>)
+        readData?.map((data,idx)=> <CompleteBookCard key={idx} data={data}></CompleteBookCard>)
       }
     </div>
   );

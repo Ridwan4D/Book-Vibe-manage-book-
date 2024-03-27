@@ -30,11 +30,11 @@ const router = createBrowserRouter([
         children: [
           {
             index: true,
-            element:<CompleteReading></CompleteReading>
+            element: <CompleteReading></CompleteReading>,
           },
           {
-            path:'wishList',
-            element:<WishList></WishList>
+            path: "wishList",
+            element: <WishList></WishList>,
           },
         ],
       },
@@ -45,6 +45,10 @@ const router = createBrowserRouter([
       {
         path: "/topBooks",
         element: <TopBooks></TopBooks>,
+        loader: () =>
+          fetch(
+            `https://ridwan4d.github.io/top-book-data-of-json/topBook.json`
+          ),
       },
       {
         path: "/book/:id",

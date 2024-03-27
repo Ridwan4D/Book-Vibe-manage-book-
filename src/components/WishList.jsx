@@ -12,7 +12,7 @@ const WishList = () => {
   return (
     <div className="my-16">
       {
-        wishData.map((data,idx)=> <WishListCard key={idx} data={data}></WishListCard>)
+        wishData?.map((data,idx)=> <WishListCard key={idx} data={data}></WishListCard>)
       }
     </div>
   );
